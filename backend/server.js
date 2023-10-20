@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
@@ -13,13 +12,6 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use(
-  cors({
-    origin: ['http://localhost:8000', 'http://localhost:5173'],
-    credentials: true,
-  })
-);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the Support Desk API' });

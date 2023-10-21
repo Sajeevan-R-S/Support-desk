@@ -28,10 +28,6 @@ const NewTicket = () => {
       .catch(toast.error);
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <BackButton url="/" />
@@ -76,7 +72,12 @@ const NewTicket = () => {
             ></textarea>
           </div>
           <div className="form-group">
-            <button className="btn btn-block">Submit</button>
+            <button
+              className="btn btn-block"
+              disabled={isLoading ? true : false}
+            >
+              Submit
+            </button>
           </div>
         </form>
       </section>

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTickets } from '../features/tickets/ticketSlice';
+import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
 import BackButton from '../components/BackButton';
 import TicketItem from '../components/TicketItem';
@@ -14,7 +15,7 @@ const Tickets = () => {
     dispatch(getTickets());
   }, []);
 
-  if (!tickets) {
+  if (isLoading) {
     return <Spinner />;
   }
 

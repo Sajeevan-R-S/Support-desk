@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createTicket } from '../features/tickets/ticketSlice';
+import BackButton from '../components/BackButton';
+import Spinner from '../components/Spinner';
 
 const NewTicket = () => {
   const { user } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.tickets);
   const [name] = useState(user.name);
   const [email] = useState(user.email);
   const [product, setProduct] = useState('iPhone');
@@ -25,8 +28,13 @@ const NewTicket = () => {
       .catch(toast.error);
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
+      <BackButton url="/" />
       <section className="heading">
         <h1>Create New Ticket</h1>
         <p>Please fill out the form below</p>
